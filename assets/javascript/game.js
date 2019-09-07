@@ -1,7 +1,4 @@
 //  Use key events to listen for the letters that your players will type.
-document.onkeyup = function (event) {
-    var keyPressed = event.key;
-}
 
 
 
@@ -12,33 +9,45 @@ document.onkeyup = function (event) {
 var wins = 0;
 var losses = 0;
 var numOfGuesses = 26;
-var answers = [];
-var lettersGuessed = [" ", " "," ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " "];
+var answers = ["_"];
+var lettersGuessed = ["_"];
 var words = ["radiohead", "no doubt", "blackstreet", "savage garden", "santana"];
 
 
-var lettersGuessedText = document.getElementById("letterguessed-text");
-var numOfGuessesText = document.getElementById("guessesremaining-text");
-var winsText = document.getElementById("wins-text");
-var lossesText = document.getElementById("losses-text");
+var lettersGuessed = document.getElementById("letterguessed");
+var numOfGuesses = document.getElementById("guessesremaining");
+var wins = document.getElementById("wins");
+var losses = document.getElementById("losses");
 
 
 
+document.onkeyup = function (event) {
+    var keyPressed = event.key;
+    for (var i = 0; i < words.length; i++) {
+        answers[i] = "_";
+    }
+    var remainingLetters = words.length;
+}
+
+while (remainingLetters > 0) {
+    // Show the player their progress
+    document.write(answers.join(" "));
+    // Take input from the player
+
+    // Update answerArray and remainingLetters for every correct guess
+   }
+
+
+
+
+lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
+numOfGuessesText.textContent = "Guesses Remaining: " + numOfGuesses;
+winsText.textContent = "wins! " + wins;
+lossesText.textContent = "loses " + losses;
 //     If the word is madonna, display it like this when the game starts: _ _ _ _ _ _ _.
     
     
 //     As the user guesses the correct letters, reveal them: m a d o _  _ a.
-
-// for (var i = 0; i < words.length; i++) {
-//  answers[i] = "_";
-// }
-// var remainingLetters = words.length;
-
-
-      lettersGuessed.textContent = "Letters Guessed: " + lettersGuessed;
-      numOfGuesses.textContent = "Guesses Remaining: " + numOfGuesses;
-      wins.textContent = "wins! " + wins;
-      losses.textContent = "loses " + losses;
 
 //     Number of Guesses Remaining: (# of guesses remaining for the user).
 
