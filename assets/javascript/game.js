@@ -18,39 +18,34 @@
 
 
 // Global variables
+var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+    'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+    't', 'u', 'v', 'w', 'x', 'y', 'z'];
 var wins = 0;
-var losses = 0;
-var numOfGuesses = 0;
-var correctGuesses = ["_"];
-var incorrectGuesses = ["_"];
+var numOfGuesses = 10;
+var guess = [];
 var currentWord = ["_"];
-var words = ["radiohead", 
-             "no doubt", 
-             "blackstreet", 
-             "savage garden", 
-             "santana"];
+var words = ["radiohead",
+    "no doubt",
+    "blackstreet",
+    "savage garden",
+    "santana"];
 
 // variables for quick reference to html
 var directionsText = document.getElementById("directions");
 var currentWordText = document.getElementById("guessed");
 var numOfGuessesText = document.getElementById("remaining");
 var winsText = document.getElementById("wins");
-var lossesText = document.getElementById("losses");
-var correctGuessesText = document.getElementById("correct-guesses");
-var incorrectGuessesText = document.getElementById("incorrect-guesses");
+var guessText = document.getElementById("guess");
 
 
 // player presses a key to get started
 document.onkeyup = function (event) {
-    var userGuess = event.key;
+    var uess = event.key;
     // the game picks a random word to start
     var word = words[Math.floor(Math.random() * words.length)];
-    console.log(userGuess);
     console.log(word);
-    //for loop to add guesses in to answers array
-    // for (var i = 0; i < words.length; i++) {
-    //     currentWord[i] = "_";
-    // }
+
     var remainingLetters = words.length;
 
     while (remainingLetters > 0) {
@@ -72,28 +67,26 @@ document.onkeyup = function (event) {
                 }
             }
         }
-        
+        //for loop to add guesses in to answers array
+        for (i = 0; i < words.length; i++) {
+            words[i]
+            for (z = 0; z < guess.length; z++) {
+                if (guess[z] === currentWord[i]) {
+                    guess.push(currentWord[z])
+                    console.log("correct " + currentWord)
+                }
+                else {
+                    guess.push(currentWord[z])
+                    console.log("incorrect " + guess)
+                }
+            };
+        }
     }
 }
 
-for (i = 0; i < words.length; i++) {
-    words[i]
-    for (z = 0; z < correctGuesses.length; z++) {
-        if (correctGuesses[z] === currentWord[i]) {
-            correctGuesses.push(currentWord[z])
-            console.log("correct " + correctGuesses)
-        } 
-        else {
-            incorrectGuesses.push(incorrectGuesses[z])
-            console.log("incorrect " + incorrectGuesses)
-        }
-    };
-}
-directionsText.textContent = " ";   
-currentWordText.textContent = "Letters Guessed: " + currentWord;
+directionsText.textContent = " ";
+currentWordText.textContent = "Current word: " + currentWord;
 numOfGuessesText.textContent = "Guesses Remaining: " + numOfGuesses;
-correctGuessesText.textContent = " Correct Guesses: " + correctGuesses;
-incorrectGuessesText.textContent = "Incorrect Guesses: " + incorrectGuesses;
+guessText.textContent = "Guess: " + guess;
 winsText.textContent = "wins: " + wins;
-lossesText.textContent = "losses: " + losses;
 
