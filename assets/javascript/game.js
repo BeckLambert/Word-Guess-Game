@@ -21,8 +21,8 @@
 var wins = 0;
 var losses = 0;
 var numOfGuesses = 0;
-var answers = ["_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_", "_"];
-var lettersGuessed = ["_"];
+var answers = ["_"];
+var currentWord = ["_"];
 var words = ["radiohead", 
              "no doubt", 
              "blackstreet", 
@@ -35,13 +35,16 @@ var lettersGuessedText = document.getElementById("guessed");
 var numOfGuessesText = document.getElementById("remaining");
 var winsText = document.getElementById("wins");
 var lossesText = document.getElementById("losses");
+var answersText = document.getElementById("answers");
 
 
 // player presses a key to get started
 document.onkeyup = function (event) {
-    var keyPressed = event.key;
+    var userGuess = event.key;
+    console.log(userGuess);
     // the game picks a random word to start
     var word = words[Math.floor(Math.random() * words.length)];
+    console.log(word);
     //for loop to add guesses in to answers array
     for (var i = 0; i < words.length; i++) {
         answers[i] = "_";
@@ -50,18 +53,19 @@ document.onkeyup = function (event) {
 
     while (remainingLetters > 0) {
         // Show the player their progress
-        alert(answers.join(" "));
+        console.log(answers.join(" "));
         // Take input from the player
-        var lettersGuessed = prompt("Guess a letter!");
-        if (lettersGuessed === null) {
+        var word = prompt("Guess a letter!");
+        console.log(word);
+        if (word === null) {
             break;
-        } else if (lettersGuessed.length !== 1) {
-            alert("Please enter a single letter.");
+        } else if (word.length !== 1) {
+            console.log("Please enter a single letter.");
         } else {
             // Update answerArray and remainingLetters for every correct guess
             for (var j = 0; j < words.length; j++) {
-                if (words[j] === lettersGuessed) {
-                    answers[j] = lettersGuessed;
+                if (words[j] === word) {
+                    answers[j] = word;
                     remainingLetters--;
                 }
             }
@@ -72,6 +76,7 @@ document.onkeyup = function (event) {
 directionsText.textContent = " ";   
 lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
 numOfGuessesText.textContent = "Guesses Remaining: " + numOfGuesses;
+answersText.textContent = " Answers: " + answers;
 winsText.textContent = "wins! " + wins;
 lossesText.textContent = "loses " + losses;
 
