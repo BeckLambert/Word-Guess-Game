@@ -1,10 +1,10 @@
 // Global variables
 var greeceLocations = ["athens", "santorini", "mykonos", "crete", "zakynthos", "delphi", "delos"];
-var lettersGuessed = [];
-var selectedWord = [];
+var lettersGuessed = " ";
 var currentWord = [];
 var numOfGuesses = 10;
 var wins = 0;
+
 
 // variables for quick reference to html
 var directionsText = document.getElementById("directions");
@@ -16,15 +16,40 @@ var lettersGuessedText = document.getElementById("letters-guessed");
 // player presses a key to get started
 document.onkeyup = function (event) {
    var userGuess = event.key;
-    // the game picks a random word to start
-    var word = greeceLocations[Math.floor(Math.random() * greeceLocations.length)];
-    console.log(greeceLocations);
+   var word = greeceLocations[Math.floor(Math.random() * greeceLocations.length)];
+   directionsText.textContent = " ";
 
-    for (var i= 0; i < word.length; i++) {
-        selectedWord[i] = "_";
+   for (var i= 0; i < word.length; i++) {
+        currentWord[i] = "_";
         console.log(word);
     }
+
+    var remainingLetters = word.length;
+
+    for (var j = 0; j < word.length; j++) {
+        if (word[j] === userGuess) {
+            currentWord[j] = userGuess;
+            remainingLetters--;
+        }
+    }
+
 }
+
+    lettersGuessed.push(userGuess); 
+    
+    console.log(lettersGuessed);
+    
+    if (userGuess === currentWord) {
+        wins++;
+    } else {
+        numOfGuesses--;
+    }
+
+    if (numOfGuesses <= 0) {
+        alert("YOU LOSE!");
+    } 
+
+
 
     
     
