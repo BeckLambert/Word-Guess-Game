@@ -21,7 +21,8 @@
 var wins = 0;
 var losses = 0;
 var numOfGuesses = 0;
-var answers = ["_"];
+var correctGuesses = ["_"];
+var incorrectGuesses = ["_"];
 var currentWord = ["_"];
 var words = ["radiohead", 
              "no doubt", 
@@ -31,29 +32,30 @@ var words = ["radiohead",
 
 // variables for quick reference to html
 var directionsText = document.getElementById("directions");
-var lettersGuessedText = document.getElementById("guessed");
+var currentWordText = document.getElementById("guessed");
 var numOfGuessesText = document.getElementById("remaining");
 var winsText = document.getElementById("wins");
 var lossesText = document.getElementById("losses");
-var answersText = document.getElementById("answers");
+var correctGuessesText = document.getElementById("correct-guesses");
+var incorrectGuessesText = document.getElementById("incorrect-guesses");
 
 
 // player presses a key to get started
 document.onkeyup = function (event) {
     var userGuess = event.key;
-    console.log(userGuess);
     // the game picks a random word to start
     var word = words[Math.floor(Math.random() * words.length)];
+    console.log(userGuess);
     console.log(word);
     //for loop to add guesses in to answers array
-    for (var i = 0; i < words.length; i++) {
-        answers[i] = "_";
-    }
+    // for (var i = 0; i < words.length; i++) {
+    //     currentWord[i] = "_";
+    // }
     var remainingLetters = words.length;
 
     while (remainingLetters > 0) {
         // Show the player their progress
-        console.log(answers.join(" "));
+        console.log(currentWord.join(" "));
         // Take input from the player
         var word = prompt("Guess a letter!");
         console.log(word);
@@ -73,10 +75,25 @@ document.onkeyup = function (event) {
         
     }
 }
+
+for (i = 0; i < words.length; i++) {
+    words[i]
+    for (z = 0; z < correctGuesses.length; z++) {
+        if (correctGuesses[z] === currentWord[i]) {
+            correctGuesses.push(currentWord[z])
+            console.log("correct " + correctGuesses)
+        } 
+        else {
+            incorrectGuesses.push(incorrectGuesses[z])
+            console.log("incorrect " + incorrectGuesses)
+        }
+    };
+}
 directionsText.textContent = " ";   
-lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
+currentWordText.textContent = "Letters Guessed: " + currentWord;
 numOfGuessesText.textContent = "Guesses Remaining: " + numOfGuesses;
-answersText.textContent = " Answers: " + answers;
-winsText.textContent = "wins! " + wins;
-lossesText.textContent = "loses " + losses;
+correctGuessesText.textContent = " Correct Guesses: " + correctGuesses;
+incorrectGuessesText.textContent = "Incorrect Guesses: " + incorrectGuesses;
+winsText.textContent = "wins: " + wins;
+lossesText.textContent = "losses: " + losses;
 
