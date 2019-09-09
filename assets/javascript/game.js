@@ -1,6 +1,17 @@
 // Global variables
-var greeceLocations = ["athens", "santorini", "mykonos", "crete", "zakynthos", "delphi", "delos"];
-var lettersGuessed = " ";
+var greeceLocations = ["athens", 
+                       "santorini", 
+                       "mykonos", 
+                       "crete", 
+                       "zakynthos", 
+                       "delphi", 
+                       "delos"];
+
+var word = "";
+var started = false;
+var reveal = [];
+
+var lettersGuessed = [];
 var currentWord = [];
 var numOfGuesses = 10;
 var wins = 0;
@@ -16,38 +27,54 @@ var lettersGuessedText = document.getElementById("letters-guessed");
 // player presses a key to get started
 document.onkeyup = function (event) {
    var userGuess = event.key;
-   var word = greeceLocations[Math.floor(Math.random() * greeceLocations.length)];
-   directionsText.textContent = " ";
-
+    //random word is chosen
+   if (!started) {
+        word = greeceLocations[Math.floor(Math.random() * greeceLocations.length)];
+    // push the letter guessed in to the current word 
    for (var i= 0; i < word.length; i++) {
-        currentWord[i] = "_";
+        currentWord.push("_");
+        reveal.push(false);
         console.log(word);
     }
-
-    var remainingLetters = word.length;
-
+        //display correct letter
+        started = true;
+}   else {
     for (var j = 0; j < word.length; j++) {
         if (word[j] === userGuess) {
-            currentWord[j] = userGuess;
-            remainingLetters--;
+            reveal[j] = true;
+            console.log(reveal);
+            console.log(userGuess);
+            console.log(word);
         }
     }
-
 }
 
-    lettersGuessed.push(userGuess); 
-    
-    console.log(lettersGuessed);
-    
-    if (userGuess === currentWord) {
+    var done = true;
+        //display incorrect letter 
+    for (var i = 0; i < word.length; i++) {
+        if (reveal[i]) {
+            currentWord[i] = word[i]; 
+        } else {
+        currentWord[i] = "_";
+        done = false;
+    }
+
+    if (lettersGuessed.indexOf(userGuess) == -1) {
+        lettersGuessed.push(userGuess);
+        console.log(lettersGuessed);
+    }
+    // if word guess is complete you win if not take a number off number of guesses
+    if (done) {
         wins++;
     } else {
         numOfGuesses--;
     }
-
+    // if you run out of guesses you lose 
     if (numOfGuesses <= 0) {
-        alert("YOU LOSE!");
+        alert("Game Over!");
     } 
+}
+}
 
 
 
