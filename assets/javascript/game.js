@@ -24,6 +24,17 @@ var numOfGuessesText = document.getElementById("remaining");
 var winsText = document.getElementById("wins");
 var lettersGuessedText = document.getElementById("letters-guessed");
 
+// function playGame() {
+//      word = " ";
+//      started = false;
+//      reveal = [];
+    
+//      lettersGuessed = [];
+//      currentWord = [];
+//      numOfGuesses = 10;
+   
+// }
+
 // player presses a key to get started
 document.onkeyup = function (event) {
     var userGuess = event.key;
@@ -65,7 +76,7 @@ document.onkeyup = function (event) {
         if (word === currentWord.join("")) {
             wins++;
             alert("you won");
-            // end/reset game here
+            // playGame();
             console.log(numOfGuesses);
             //
         }
@@ -82,8 +93,21 @@ document.onkeyup = function (event) {
     } 
             if (numOfGuesses === 0) {
             alert("game over");
+            // playGame();
             }
+            
+            directionsText.textContent = " ";
+            currentWordText.textContent = "Current word: " + currentWord.join("");
+            numOfGuessesText.textContent = "Guesses Remaining: " + numOfGuesses;
+            lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
+            winsText.textContent = "wins: " + wins;
+
+            playGame();
 }
+
+
+
+
 
     //create reset at end of game
     
@@ -96,12 +120,6 @@ document.onkeyup = function (event) {
 
 
 
-
-directionsText.textContent = " ";
-currentWordText.textContent = "Current word: " + currentWord;
-numOfGuessesText.textContent = "Guesses Remaining: " + numOfGuesses;
-lettersGuessedText.textContent = "Letters Guessed: " + lettersGuessed;
-winsText.textContent = "wins: " + wins;
 
 
 
