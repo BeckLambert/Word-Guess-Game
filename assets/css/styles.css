@@ -1,0 +1,16 @@
+body {
+    background-image: url("https://images.reference.com/amg-cms-reference-images/prod/what-do-the-colors-of-the-greek-flag-mean_b9a73276-8012-42e3-8e2f-dd35ac938030.jpg?width=760&height=411&fit=crop");
+}
+
+h1 {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+#players {
+    font-size: 30px;
+    text-align: center;
+    margin-top: 50px;
+}
