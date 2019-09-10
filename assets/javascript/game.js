@@ -66,7 +66,7 @@ document.onkeyup = function (event) {
             wins++;
             alert("you won");
             // end/reset game here
-            //print num of guess
+            console.log(numOfGuesses);
             //
         }
     } else {
@@ -75,7 +75,9 @@ document.onkeyup = function (event) {
         if (lettersGuessed.indexOf(userGuess) === -1) {
             lettersGuessed.push(userGuess);
             // update array on page
-            lettersGuessed.text(userGuess);
+            console.log(numOfGuesses);
+            console.log(userGuess);
+            // lettersGuessed.text("#remaining");
         }
     } 
             if (numOfGuesses === 0) {
