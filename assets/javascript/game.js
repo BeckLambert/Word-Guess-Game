@@ -1,13 +1,13 @@
 // Global variables
-var greeceLocations = ["athens", 
-                       "santorini", 
-                       "mykonos", 
-                       "crete", 
-                       "zakynthos", 
-                       "delphi", 
-                       "delos"];
+var greeceLocations = ["athens",
+    "santorini",
+    "mykonos",
+    "crete",
+    "zakynthos",
+    "delphi",
+    "delos"];
 
-var word = "";
+var word = " ";
 var started = false;
 var reveal = [];
 
@@ -26,60 +26,74 @@ var lettersGuessedText = document.getElementById("letters-guessed");
 
 // player presses a key to get started
 document.onkeyup = function (event) {
-   var userGuess = event.key;
+    var userGuess = event.key;
     //random word is chosen
-   if (!started) {
+    if (!started) {
         word = greeceLocations[Math.floor(Math.random() * greeceLocations.length)];
-    // push the letter guessed in to the current word 
-   for (var i= 0; i < word.length; i++) {
-        currentWord.push("_");
-        reveal.push(false);
+        // push the letter guessed in to the current word 
         console.log(word);
-    }
+        for (var i = 0; i < word.length; i++) {
+            currentWord.push("_");
+            reveal.push(false);
+        }
+
+        //update current word to page .join("")
         //display correct letter
         started = true;
-}   else {
-    for (var j = 0; j < word.length; j++) {
-        if (word[j] === userGuess) {
-            reveal[j] = true;
-            console.log(reveal);
-            console.log(userGuess);
-            console.log(word);
+    } else {
+        for (var j = 0; j < word.length; j++) {
+            if (word[j] === userGuess) {
+                reveal[j] = true;
+                console.log(reveal);
+                console.log(userGuess);
+                console.log(word);
+            }
         }
     }
-}
 
     var done = true;
-        //display incorrect letter 
-    for (var i = 0; i < word.length; i++) {
-        if (reveal[i]) {
-            currentWord[i] = word[i]; 
-        } else {
-        currentWord[i] = "_";
-        done = false;
-    }
-
-    if (lettersGuessed.indexOf(userGuess) == -1) {
-        lettersGuessed.push(userGuess);
-        console.log(lettersGuessed);
-    }
-    // if word guess is complete you win if not take a number off number of guesses
-    if (done) {
-        wins++;
+    //display incorrect letter 
+    if (word.includes(userGuess)) {
+        // userGuess IS in word
+        for (var i = 0; i < word.length; i++) {
+            if (reveal[i]) {
+                currentWord[i] = word[i];
+            } else {
+                currentWord[i] = "_";
+            }
+        }
+        if (word === currentWord.join("")) {
+            wins++;
+            alert("you won");
+            // end/reset game here
+            //print num of guess
+            //
+        }
     } else {
+        // userGuess is NOT in word
         numOfGuesses--;
-    }
-    // if you run out of guesses you lose 
-    if (numOfGuesses <= 0) {
-        alert("Game Over!");
+        if (lettersGuessed.indexOf(userGuess) === -1) {
+            lettersGuessed.push(userGuess);
+            // update array on page
+            lettersGuessed.text(userGuess);
+        }
     } 
+            if (numOfGuesses === 0) {
+            alert("game over");
+            }
 }
-}
 
-
-
+    //create reset at end of game
     
-    
+
+
+
+
+
+
+
+
+
 
 directionsText.textContent = " ";
 currentWordText.textContent = "Current word: " + currentWord;
